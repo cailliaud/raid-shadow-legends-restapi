@@ -1,0 +1,55 @@
+{
+  "_id": {
+    "$oid": "5ed51f7ef43ad4253c6d10d4"
+  },
+  "name": "Hordin",
+  "faction": "Seigneurs",
+  "rarity": "Épique",
+  "affinity": "Magie",
+  "type": "Attaque",
+  "stats": {
+    "attack": 1321,
+    "defense": 859,
+    "speed": 95,
+    "criticalRate": 15,
+    "criticalDamage": 60,
+    "resistance": 30,
+    "accuracy": 0
+  },
+  "skills": [
+    {
+      "name": "Frappe Implacable",
+      "description": "Attaque deux fois un ennemi. Octroie un tour supplémentaire si la cible est tuée.",
+      "damageStat": "ATQ",
+      "upgrades": [
+        "Niv. 2 : Dégâts +5%",
+        "Niv. 3 : Dégâts +5%",
+        "Niv. 4 : Dégâts +5%",
+        "Niv. 5 : Dégâts +10%"
+      ],
+      "cooldown": 0
+    },
+    {
+      "name": "Écartèlement",
+      "description": "Attaque un ennemi. Place un débuff de réduction d'ATQ de 60% pendant 2 tours. Possède 20% de chance de débloquer Perceciel pendant 1 tour.",
+      "damageStat": "ATQ",
+      "upgrades": [
+        "Niv. 2 : Dégâts +5%",
+        "Niv. 3 : Chance de buff/débuff +5%",
+        "Niv. 4 : Dégâts +10%",
+        "Niv. 5 : Chance de buff/débuff +10%"
+      ],
+      "cooldown": 4
+    },
+    {
+      "name": "Haine Ardente",
+      "description": "Place un buff d'augmentation d'ATQ de 50%, un buff d'augmentation de TAUX C. de 30% et un buff d'augmentation de VIT de 30% sur ce champion pendant 2 tours. Octroie un tour supplémentaire.",
+      "damageStat": "NONE",
+      "upgrades": [
+        "Niv. 2 : Temps de rechargement -1 tour"
+      ],
+      "cooldown": 6
+    }
+  ],
+  "aura": "Augmente la VIT des alliés dans les cryptes de faction de 20%."
+}
