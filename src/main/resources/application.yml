@@ -1,2 +1,10 @@
 server:
   port: 8080
+  error:
+    include-message: ALWAYS
+    include-stacktrace: NEVER
+
+springdoc:
+  swagger-ui:
+    path: '/swagger-ui.html'
+  version: 1.0

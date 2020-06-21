@@ -5,12 +5,15 @@ import fr.cailliaud.rsl.restapi.repository.ChampionRepository;
 import fr.cailliaud.rsl.restapi.service.ChampionService;
 import fr.cailliaud.rsl.restapi.service.dto.ChampionDTO;
 import fr.cailliaud.rsl.restapi.service.dto.ChampionUpdateDTO;
-import fr.cailliaud.rsl.restapi.web.api.exception.ChampionAlreadyExists;
 import fr.cailliaud.rsl.restapi.web.api.exception.ChampionResourceNotFound;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -21,6 +24,7 @@ import java.util.Optional;
 @RestController
 @Slf4j
 @RequestMapping("/api")
+@Tag(name = "Champion", description = "API pour les champions")
 public class ChampionResource {
 
     private ChampionService championService;
@@ -38,11 +42,12 @@ public class ChampionResource {
     }
 
     @PostMapping("/champions")
+    @Operation(summary = "Create champion", security = @SecurityRequirement(name = "basicAuth"))
     public ResponseEntity<Champion> createChampion(@Valid @RequestBody ChampionDTO championDTO) throws URISyntaxException {
 
         log.debug("REST request to save champion : {}", championDTO);
         championRepository.findOneByName(championDTO.getName().toLowerCase()).ifPresent(champion -> {
-                    throw new ChampionAlreadyExists();
+                    throw new ResponseStatusException(HttpStatus.CONFLICT,"Champion "+championDTO.getName()+" already exists.",null);
                 }
         );
         Champion newChampion = championService.createChampion(championDTO);
