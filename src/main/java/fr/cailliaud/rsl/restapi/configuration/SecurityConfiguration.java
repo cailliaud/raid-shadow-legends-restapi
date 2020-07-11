@@ -47,8 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PATCH, "/api/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN")
                 .and()
-
-            .formLogin().disable()
+            .formLogin().disable();
 
         //@formatter:on
     }
