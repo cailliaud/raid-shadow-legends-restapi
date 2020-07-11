@@ -8,3 +8,15 @@ springdoc:
   swagger-ui:
     path: '/swagger-ui.html'
   version: 1.0
+
+
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_URI}
+
+
+security:
+  admin:
+    login: ${ADMIN_LOGIN}
+    password: ${ADMIN_PASSWORD}

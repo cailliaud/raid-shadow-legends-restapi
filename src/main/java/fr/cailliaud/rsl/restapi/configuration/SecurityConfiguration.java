@@ -1,5 +1,6 @@
 package fr.cailliaud.rsl.restapi.configuration;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,12 +13,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
+    @Value("${security.admin.login}")
+    private String adminLogin;
+
+    @Value("${security.admin.password}")
+    private String adminPassword;
+
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.inMemoryAuthentication()
-                .withUser("admin").password("{noop}admin").roles("ADMIN");
+                .withUser(adminLogin).password("{noop}"+adminPassword).roles("ADMIN");
 
     }
 
