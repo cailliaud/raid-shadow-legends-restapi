@@ -29,10 +29,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     }
 
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //@formatter:off
-        http
+        http.requiresChannel()
+            .requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null)
+            .requiresSecure().and()
             .httpBasic()
                 .and()
             .csrf().disable()
@@ -43,7 +47,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PATCH, "/api/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN")
                 .and()
-            .formLogin().disable();
+
+            .formLogin().disable()
+
         //@formatter:on
     }
 }
