@@ -1,4 +1,5 @@
 server:
+  port: $PORT
   error:
     include-message: ALWAYS
     include-stacktrace: NEVER
