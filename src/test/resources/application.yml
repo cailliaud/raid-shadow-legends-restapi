@@ -1,0 +1,12 @@
+server:
+  port: 8080
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://admin_raid_shadow:test@localhost/raid-shadow-legends-french?retryWrites=true&w=majority
+
+security:
+  admin:
+    login: admin
+    password: test
